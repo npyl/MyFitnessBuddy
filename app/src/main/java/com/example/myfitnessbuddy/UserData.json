@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "name"      :   "Nikos",
+      "surname"   :   "Pylarinos",
+      "age"       :   "22",
+      "weight"    :   "60",
+      "height"    :   "170",
+      "male"      :   true,
+      "plan"      :   "bulk",
+      "dislikes"  : [
+        "peanutbutter"
+      ],
+      "sport"     :   "weights",
+      "pushups"   :   1,
+      "pullups"   :   1,
+      "email"     :   "nikos@gmail.com",
+      "password"  :   "123",
+      "has_completed_first_run": true
+    },
+    {
+      "name"      :   "Tasos",
+      "surname"   :   "Papagewrgopoulos",
+      "age"       :   "22",
+      "weight"    :   "70",
+      "height"    :   "180",
+      "male"      :   true,
+      "plan"      :   "maintain",
+      "dislikes"  : [
+        "fish"
+      ],
+      "sport"     :   "cardio",
+      "pushups"   :   2,
+      "pullups"   :   2,
+      "email"     :   "tasos@gmail.com",
+      "password"  :   "456",
+      "has_completed_first_run": true
+    },
+    {
+      "name"      :   "Vaggelis",
+      "surname"   :   "Rozos",
+      "age"       :   "22",
+      "weight"    :   "70",
+      "height"    :   "180",
+      "male"      :   true,
+      "plan"      :   "cut",
+      "dislikes"  : [
+        "rice"
+      ],
+      "sport"     :   "weights",
+      "pushups"   :   3,
+      "pullups"   :   3,
+      "email"     :   "vaggos@gmail.com",
+      "password"  :   "789",
+      "has_completed_first_run": true
+    },
+    {
+      "name"      :   "Dimitris",
+      "surname"   :   "Giannakakis",
+      "email"     :   "mitsos@gmail.com",
+      "password"  :   "100",
+      "has_completed_first_run": false
+    }
+  ]
+}
