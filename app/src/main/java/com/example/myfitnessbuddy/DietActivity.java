@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DietActivity extends AppCompatActivity {
 
@@ -73,10 +74,33 @@ public class DietActivity extends AppCompatActivity {
         int proteinsArraySize = proteins.length;
         int carbsArraySize = carbs.length;
 
+        int randomProtein = 0;
+        int randomCarb = 0;
+
+        Random rand = new Random();
+
         // generate foods for 7 days of a week
         for (int i = 0; i < 7; i++)
         {
-            
+            int newRandomProtein = 0;
+            int newRandomCarb = 0;
+
+            /* keep choosing a random protein until it's not the same as yesterday */
+            do {
+                newRandomProtein = rand.nextInt(proteinsArraySize);
+            }
+            while (newRandomProtein == randomProtein);
+
+            /* (same for carb) */
+            do {
+                rand.nextInt(carbsArraySize);
+            }
+            while (newRandomCarb == randomCarb);
+
+            randomProtein = newRandomProtein;
+            randomCarb = newRandomCarb;
+
+            String foods = proteins[randomProtein] + " with" + carbs[randomCarb];
         }
     }
 
