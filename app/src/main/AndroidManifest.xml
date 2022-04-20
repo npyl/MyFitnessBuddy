@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Diet"
+            android:name=".DietActivity"
             android:label="@string/title_activity_diet"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
