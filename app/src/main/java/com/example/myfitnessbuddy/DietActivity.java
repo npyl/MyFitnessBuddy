@@ -20,22 +20,6 @@ import java.util.Random;
 
 public class DietActivity extends AppCompatActivity {
 
-    //  string format:
-    //  name:cal:pro:car:fat
-
-    private String proteins[] = {
-            "chicken:284:53.4:6.2",
-    };
-
-    private String carbs[] = {
-            "apple:52:0:14:0",
-            "banana:89:0:23:0"
-    };
-
-    private String fats[] = {
-            "peanuts:0:0:0"
-    };
-
     public DietActivity() {
         try
         {
@@ -54,7 +38,7 @@ public class DietActivity extends AppCompatActivity {
                 o = jsonsForUsers.getJSONObject(i);
                 String email = o.getString("email");
 
-                if (User.currentUser().email() == email)
+                if (User.currentUser().getEmail() == email)
                 {
                     break;
                 }
@@ -66,41 +50,6 @@ public class DietActivity extends AppCompatActivity {
         }
         finally {
 
-        }
-    }
-
-    public void generateWeeklyDietPlan()
-    {
-        int proteinsArraySize = proteins.length;
-        int carbsArraySize = carbs.length;
-
-        int randomProtein = 0;
-        int randomCarb = 0;
-
-        Random rand = new Random();
-
-        // generate foods for 7 days of a week
-        for (int i = 0; i < 7; i++)
-        {
-            int newRandomProtein = 0;
-            int newRandomCarb = 0;
-
-            /* keep choosing a random protein until it's not the same as yesterday */
-            do {
-                newRandomProtein = rand.nextInt(proteinsArraySize);
-            }
-            while (newRandomProtein == randomProtein);
-
-            /* (same for carb) */
-            do {
-                rand.nextInt(carbsArraySize);
-            }
-            while (newRandomCarb == randomCarb);
-
-            randomProtein = newRandomProtein;
-            randomCarb = newRandomCarb;
-
-            String foods = proteins[randomProtein] + " with" + carbs[randomCarb];
         }
     }
 

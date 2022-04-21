@@ -3,12 +3,20 @@ package com.example.myfitnessbuddy;
 import java.util.ArrayList;
 
 public class Day {
-    private ArrayList<String> foods;
-    private String name;
+    private ArrayList<FoodOrExercise> items;        // items (can be either foods or exercises)
+    private String name;                            // name of the day
 
     public Day(String nameOfDay) {
         this.name = nameOfDay;
-        this.foods = null;
+        this.items = null;
     }
 
+    public Day() {}
+
+    public void addFood(Food f) {
+        items.add(f);
+    }
+    public void addExercise(Exercise e) {
+        items.add(e);
+    }
 }
