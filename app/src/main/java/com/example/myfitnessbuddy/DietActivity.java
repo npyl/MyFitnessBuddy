@@ -23,27 +23,14 @@ public class DietActivity extends AppCompatActivity {
     public DietActivity() {
         try
         {
-            ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
-
-            /* getting json for each user */
-            JSONArray jsonsForUsers = pj.getListOfUsers();
-
-            /*
-             * get current user info
-             */
-            JSONObject o = null;
-
-            for (int i = 0; i < jsonsForUsers.length(); i++)
+//            if (!User.currentUser().hasDietPlan())
             {
-                o = jsonsForUsers.getJSONObject(i);
-                String email = o.getString("email");
-
-                if (User.currentUser().getEmail() == email)
-                {
-                    break;
-                }
+                DietPlan plan = new DietPlan();
+                plan.prepareWeek();
+//                User.currentUser().setDietPlan(plan);
             }
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Log.d("DIET", "general exception: " + ex);
         }

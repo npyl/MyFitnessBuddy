@@ -1,7 +1,9 @@
 package com.example.myfitnessbuddy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +22,10 @@ import com.example.myfitnessbuddy.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +56,49 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentUserEmail = prefs.getString("signedUser", "");
+
+        Log.d("MainActivity", "signedUser: " + currentUserEmail);
+
+        if (currentUserEmail == null || currentUserEmail.isEmpty())
+        {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
+        else
+        {
+            try {
+                ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
+
+                /* getting json for each user */
+                JSONArray jsonsForUsers = pj.getListOfUsers();
+
+                /*
+                 * get current user info
+                 */
+                JSONObject o = null;
+
+                for (int i = 0; i < jsonsForUsers.length(); i++)
+                {
+                    o = jsonsForUsers.getJSONObject(i);
+                    String email = o.getString("email");
+
+                    if (User.currentUser().getEmail() == email)
+                    {
+                        break;
+                    }
+                }
+            }
+            catch (JSONException ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
     }
 
     @Override
@@ -64,26 +113,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void onLoginButtonClick(View view) {
-        TextView emailTextField = findViewById(R.id.emailTextField);
-        TextView passwTextField = findViewById(R.id.passwordTextField);
-
-        String email = emailTextField.getText().toString();
-        String passw = passwTextField.getText().toString();
-
-        if (email.isEmpty() || passw.isEmpty())
-            return;
-
-        // TODO: Exception
-
-        Boolean res = LoginActivity.login(email, passw);
-
-        if (res)
-            Log.d("LOGIN", "Successful login!");
-
-//        ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
     }
 
     // ON CLICK: this shows the Diet Activity on click

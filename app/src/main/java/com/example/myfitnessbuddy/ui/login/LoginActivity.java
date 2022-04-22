@@ -5,12 +5,14 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -36,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
+        final EditText usernameEditText = findViewById(R.id.emailTextField);
+        final EditText passwordEditText = findViewById(R.id.passwordTextField);
         final Button loginButton = findViewById(R.id.signInButton);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
@@ -102,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                            passwordEditText.getText().toString(), getBaseContext());
                 }
                 return false;
             }
@@ -113,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                        passwordEditText.getText().toString(), getBaseContext());
             }
         });
     }
@@ -122,60 +124,11 @@ public class LoginActivity extends AppCompatActivity {
     // my code
     // -----------------------------
 
-    static String db[] = {
-            "nikos@gmail.com:123",
-            "tasos@gmail.com:456",
-            "vaggos@gmail.com:789",
-            "mitsos@gmail.com:100",
-    };
-
-    /*
-     *  Every time the user runs the app, this method is called
-     */
-    public static Boolean checkForLoggedInUser()
-    {
-        return false;
-    }
-
-    //
-    // Returns true if login was successful
-    //
-    public static Boolean login(String email, String password)
-    {
-        Log.d("LOGIN", "got email: " + email + " and password: " + password);
-
-        for (int i = 0; i < db.length; i++)
-        {
-            String credentials[] = db[i].split(":");
-            if (credentials.length != 2)
-                return false;
-
-            String currentEmail = credentials[0];
-            String currentPassw = credentials[1];
-
-            if (currentEmail.isEmpty() || currentPassw.isEmpty())
-                return false;
-
-            if (currentEmail.contentEquals(email) && currentPassw.contentEquals(password))
-                return true;
-        }
-
-        // TODO: exception
-
-        return false;
-    }
-
     /*
        when signup button is pressed
      */
     public void moveToSignUpActivity(View view) {
 
-    }
-
-    /*
-        when signin button is pressed
-     */
-    public void attemptSignIn(View view) {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
