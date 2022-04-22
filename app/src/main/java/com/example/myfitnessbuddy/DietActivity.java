@@ -43,10 +43,9 @@ public class DietActivity extends AppCompatActivity {
                     break;
                 }
             }
-        }
-        catch (JSONException ex)
+        } catch (Exception ex)
         {
-            Log.d("DIET", "Got exception: " + ex);
+            Log.d("DIET", "general exception: " + ex);
         }
         finally {
 

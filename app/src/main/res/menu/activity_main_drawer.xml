@@ -5,11 +5,12 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_diet"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:onClick="showDietActivity"
+            android:title="@string/title_activity_diet" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_calorie_calc"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
         <item
