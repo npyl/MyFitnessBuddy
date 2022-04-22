@@ -31,7 +31,8 @@ public class DietPlan implements Planner {
         super();
     }
 
-    private String generateRandomFood() {
+    private String generateRandomFood()
+    {
         int proteinsArraySize = proteins.length;
         int carbsArraySize = carbs.length;
 
@@ -59,7 +60,6 @@ public class DietPlan implements Planner {
         // protein_name:prot:carb:fat;carb_name:prot:carb:fat
         return proteins[randomProtein] + ";" + carbs[randomCarb];
     }
-
 
     //
     //  foodForDescription():

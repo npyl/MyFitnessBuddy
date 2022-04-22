@@ -86,9 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if (User.currentUser().getEmail() == email)
                     {
-                        break;
+                        break;      // found it!
                     }
                 }
+
+                User.currentUser().setInfo(
+                        o.getString("name"),
+                        o.getString("email"),
+                        o.getInt("age"),
+                        o.getInt("height"),
+                        o.getDouble("weight"),
+                        o.getBoolean("male")
+                );
             }
             catch (JSONException ex)
             {
@@ -119,5 +128,13 @@ public class MainActivity extends AppCompatActivity {
     public void showDietActivity(MenuItem item) {
         Log.d("dada", "sdadasasd");
         startActivity(new Intent(MainActivity.this, DietActivity.class));
+    }
+
+    public void logout(MenuItem item) {
+        // remove this user from DB => logout
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.edit().remove("signedUser").commit();
+
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
 }
