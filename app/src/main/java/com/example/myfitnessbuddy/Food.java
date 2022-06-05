@@ -1,6 +1,6 @@
 package com.example.myfitnessbuddy;
 
-public class Food extends FoodOrExercise {
+public class Food {
     private String name;
     private int calories, protein, carbs, fats;
 

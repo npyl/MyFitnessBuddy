@@ -3,7 +3,7 @@ package com.example.myfitnessbuddy;
 import java.util.ArrayList;
 
 public class Day {
-    private ArrayList<FoodOrExercise> items;        // items (can be either foods or exercises)
+    private ArrayList items;                        // items (can be either foods or exercises)
     private String name;                            // name of the day
 
     public Day(String nameOfDay) {

@@ -2,7 +2,6 @@ package com.example.myfitnessbuddy;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 

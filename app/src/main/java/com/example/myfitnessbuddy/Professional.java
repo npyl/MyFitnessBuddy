@@ -1,5 +1,5 @@
 package com.example.myfitnessbuddy;
 
-public class Exercise {
+public class Professional extends User {
 
 }
