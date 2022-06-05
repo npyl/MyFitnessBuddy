@@ -2,7 +2,7 @@ package com.example.myfitnessbuddy.Activities;
 
 import android.os.Bundle;
 
-import com.example.myfitnessbuddy.DietPlan;
+import com.example.myfitnessbuddy.DietPlanner;
 import com.example.myfitnessbuddy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,13 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 public class DietActivity extends AppCompatActivity {
 
     public DietActivity() {
@@ -27,8 +20,8 @@ public class DietActivity extends AppCompatActivity {
         {
 //            if (!User.currentUser().hasDietPlan())
             {
-                DietPlan plan = new DietPlan();
-                plan.prepareWeek();
+                DietPlanner planner = new DietPlanner();
+                planner.prepareWeek();
 //                User.currentUser().setDietPlan(plan);
             }
         }
