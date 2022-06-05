@@ -3,6 +3,7 @@ package com.example.myfitnessbuddy.Activities;
 import android.os.Bundle;
 
 import com.example.myfitnessbuddy.DietPlanner;
+import com.example.myfitnessbuddy.Food;
 import com.example.myfitnessbuddy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,7 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class DietActivity extends AppCompatActivity {
+
+    public void showIngredients(ArrayList<String> ingredients) {}
+    public void showFoodSummary(Food food) {}
+    public void showGoalComparison(String goal) {}
+    public void showUnnecessaryIngredients() {}
 
     public DietActivity() {
         try

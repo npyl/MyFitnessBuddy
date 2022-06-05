@@ -2,10 +2,21 @@ package com.example.myfitnessbuddy;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class DietPlanner implements Planner {
+
+    ArrayList<String> availableIngredients;
+
+    public ArrayList<String> getAvailableIngredients() {
+        return availableIngredients;
+    }
+    public DietPlanner createDietPlannerInstance()
+    {
+        return new DietPlanner();
+    }
 
     //  string format:
     //  name:cal:pro:car:fat

@@ -1,5 +1,7 @@
 package com.example.myfitnessbuddy;
 
+import java.util.ArrayList;
+
 public class Coach implements Planner {
 
     private String strongman[] = {
@@ -44,5 +46,31 @@ public class Coach implements Planner {
     @Override
     public void prepareWeek() {
 
+    }
+
+    public Coach createCoachInstance()
+    {
+        return new Coach();
+    }
+
+    public void proposeChangesFor(ArrayList<String> mistakes)
+    {}
+
+    public Exercise proposeHarder(Exercise exercise)
+    {
+        return new Exercise();
+    }
+
+    public Exercise proposeEasier(Exercise exercise)
+    {
+        return new Exercise();
+    }
+
+    public void changeExerciseInPlan(Exercise ex, ExercisePlan plan)
+    { }
+
+    public ArrayList<String> calculatePossibleInjuries(ExercisePlan plan)
+    {
+        return new ArrayList<String>();
     }
 }
