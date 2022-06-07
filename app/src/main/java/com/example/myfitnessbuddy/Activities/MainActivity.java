@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myfitnessbuddy.ManageDB;
 import com.example.myfitnessbuddy.ParseJSON;
 import com.example.myfitnessbuddy.R;
 import com.example.myfitnessbuddy.User;
@@ -70,45 +71,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            try {
-                ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
-
-                /* getting json for each user */
-                JSONArray jsonsForUsers = pj.getListOfUsers();
-
-                /*
-                 * get current user info
-                 */
-                JSONObject o = null;
-
-                for (int i = 0; i < jsonsForUsers.length(); i++)
-                {
-                    o = jsonsForUsers.getJSONObject(i);
-                    String email = o.getString("email");
-
-                    if (User.currentUser().getEmail() == email)
-                    {
-                        break;      // found it!
-                    }
-                }
-
-                User.currentUser().setInfo(
-                        o.getString("name"),
-                        o.getString("email"),
-                        o.getInt("age"),
-                        o.getInt("height"),
-                        o.getDouble("weight"),
-                        o.getBoolean("male")
-                );
-            }
-            catch (JSONException ex)
-            {
-
-            }
-            finally
-            {
-
-            }
+            // Initialise ManageDB class throughout the whole app
+            ManageDB dbManager = ManageDB.manager();
         }
     }
 

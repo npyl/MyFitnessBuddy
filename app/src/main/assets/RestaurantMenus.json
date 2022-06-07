@@ -1,0 +1,18 @@
+{
+  "restaurants": [
+    {
+      "name":   "Thymari",
+      "menu": [
+        "foodA:10:20:30",
+        "foodB:10:20:30"
+      ]
+    },
+    {
+      "name":   "Xoiropoiito",
+      "menu": [
+        "foodC:10:20:30",
+        "foodD:10:20:30"
+      ]
+    }
+  ]
+}

@@ -14,12 +14,12 @@ public class User {
 
     public User()
     {
-        if (single_instance == null)
-            single_instance = new User();
     }
 
     public static User currentUser()
     {
+        if (single_instance == null)
+            single_instance = new User();
         return single_instance;
     }
 
