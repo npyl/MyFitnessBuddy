@@ -39,7 +39,7 @@ public class CoachingActivity extends AppCompatActivity {
             ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
 
             /* getting json for each user */
-            JSONArray jsonsForUsers = pj.getListOfUsers();
+            JSONArray jsonsForUsers = pj.getJSONArray("users");
 
             /*
              * get current user info

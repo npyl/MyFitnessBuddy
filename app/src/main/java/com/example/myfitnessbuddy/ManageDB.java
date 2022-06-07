@@ -1,7 +1,5 @@
 package com.example.myfitnessbuddy;
 
-import android.content.Context;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,16 +16,15 @@ public class ManageDB {
             "Xoiropoiito"
     };
 
-    // TODO: create json
-    JSONObject                  restaurantsMenus;
+    ArrayList<JSONObject>       restaurantsMenus;
 
     // TODO: add
     ArrayList<Food>             meals;
 
-    // TODO: add more
     String[]                    professionalsList = {
-            "George",
-            "John"
+            "George Bar",
+            "John Gymnast",
+            "Nick Pro",
     };
 
     private static ManageDB single_instance = null;
@@ -39,14 +36,16 @@ public class ManageDB {
         //
         try
         {
+            //
+            // Get List of users & Extract info for current user
+            // (everything is contained in the UserData.json file)
+            //
+
             ParseJSON pj = new ParseJSON("UserData.json", null);
 
-            /* getting json for each user */
-            JSONArray jsonsForUsers = pj.getListOfUsers();
+            // getting json for each user
+            JSONArray jsonsForUsers = pj.getJSONArray("users");
 
-            /*
-             * get current user info
-             */
             JSONObject o = null;
 
             for (int i = 0; i < jsonsForUsers.length(); i++)
@@ -69,7 +68,25 @@ public class ManageDB {
                     o.getBoolean("male")
             );
 
+            //
+            // Restaurant Menus
+            //
             pj = new ParseJSON("RestaurantMenus.json", null);
+
+            // getting json for each restaurant
+            JSONArray jsonsForRestaurants = pj.getJSONArray("restaurants");
+
+            // clear json object o
+            o = null;
+
+            // foreach restaurant get menu
+            for (int i = 0; i < jsonsForRestaurants.length(); i++)
+            {
+                o = jsonsForRestaurants.getJSONObject(i);
+
+                // add to our list; this is a bit ugly but ok for now...
+                restaurantsMenus.add(o);
+            }
         }
         catch (Exception ex)
         {
@@ -111,9 +128,8 @@ public class ManageDB {
         return new ArrayList<String>(Arrays.asList(restaurantList));
     }
 
-    public ArrayList<String> downloadRestaurantsMenus() {
-        // TODO: check if this works at all...
-        return new ArrayList<String>(Arrays.<String>asList(String.valueOf(restaurantsMenus)));
+    public ArrayList<JSONObject> downloadRestaurantsMenus() {
+        return restaurantsMenus;
     }
 
     public DietPlan getDietPlan() {

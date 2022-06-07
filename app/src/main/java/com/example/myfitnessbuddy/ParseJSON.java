@@ -49,8 +49,7 @@ public class ParseJSON {
         this.jsonObject = new JSONObject(this.contents);
     }
 
-    public JSONArray getListOfUsers() throws JSONException
-    {
-        return this.jsonObject.getJSONArray("users");
+    public JSONArray getJSONArray(String string) throws JSONException {
+        return this.jsonObject.getJSONArray(string);
     }
 }
