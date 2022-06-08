@@ -34,36 +34,36 @@ public class CoachingActivity extends AppCompatActivity {
     public void calculateDifferencies(ExercisePlan ep, ExercisePlan ep2) {}
 
     public CoachingActivity() {
-        try
-        {
-            ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
-
-            /* getting json for each user */
-            JSONArray jsonsForUsers = pj.getJSONArray("users");
-
-            /*
-             * get current user info
-             */
-            JSONObject o = null;
-
-            for (int i = 0; i < jsonsForUsers.length(); i++)
-            {
-                o = jsonsForUsers.getJSONObject(i);
-                String email = o.getString("email");
-
-                if (User.currentUser().getEmail() == email)
-                {
-                    break;
-                }
-            }
-        }
-        catch (JSONException ex)
-        {
-            Log.d("COACHING", "Got exception: " + ex);
-        }
-        finally {
-
-        }
+//        try
+//        {
+//            ParseJSON pj = new ParseJSON("UserData.json", getApplicationContext());
+//
+//            /* getting json for each user */
+//            JSONArray jsonsForUsers = pj.getJSONArray("users");
+//
+//            /*
+//             * get current user info
+//             */
+//            JSONObject o = null;
+//
+//            for (int i = 0; i < jsonsForUsers.length(); i++)
+//            {
+//                o = jsonsForUsers.getJSONObject(i);
+//                String email = o.getString("email");
+//
+//                if (User.currentUser().getEmail() == email)
+//                {
+//                    break;
+//                }
+//            }
+//        }
+//        catch (JSONException ex)
+//        {
+//            Log.d("COACHING", "Got exception: " + ex);
+//        }
+//        finally {
+//
+//        }
     }
 
     public void generateWeeklyExercisePlan()

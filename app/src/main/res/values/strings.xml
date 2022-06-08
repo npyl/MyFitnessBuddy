@@ -33,4 +33,6 @@
     <string name="title_activity_coaching">CoachingActivity</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
+    <string name="title_workout_log">Workout Log</string>
+    <string name="title_coaching_diet">Coaching</string>
 </resources>

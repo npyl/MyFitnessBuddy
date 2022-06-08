@@ -17,18 +17,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myfitnessbuddy.ExercisePlan;
 import com.example.myfitnessbuddy.ManageDB;
-import com.example.myfitnessbuddy.ParseJSON;
 import com.example.myfitnessbuddy.R;
-import com.example.myfitnessbuddy.User;
+import com.example.myfitnessbuddy.StatisticsInfo;
 import com.example.myfitnessbuddy.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_diet, R.id.nav_calorie_calc, R.id.nav_slideshow)
+                R.id.nav_workout_log, R.id.nav_diet, R.id.nav_coaching)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -92,8 +90,15 @@ public class MainActivity extends AppCompatActivity {
 
     // ON CLICK: this shows the Diet Activity on click
     public void showDietActivity(MenuItem item) {
-        Log.d("dada", "sdadasasd");
         startActivity(new Intent(MainActivity.this, DietActivity.class));
+    }
+
+    public void showCoachingActivity(MenuItem item) {
+        startActivity(new Intent(MainActivity.this, CoachingActivity.class));
+    }
+
+    public void showWorkoutLog(MenuItem item) {
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
 
     public void logout(MenuItem item) {
@@ -103,4 +108,21 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
+
+    //
+    //  Workout Log Functionality
+    //
+    public void predictTodaysWorkout(ExercisePlan ep) {}
+    public void createWorkoutLogEntry(ArrayList<String> contents) {}
+    public void showSummary() {}
+    public void showStatisticsInfo(StatisticsInfo si) {}
+    public void askForNewGoal() {}
+    public void calculateNewGoals(StatisticsInfo si) {}
+    public void calculateTimeUntilAchievingGoals(ArrayList<String> goals) {}
+    public void showTimeUntilAchieved() {}
+    public void askWhetherResultsArePleasing() {}
+    public void showPossibleMistakes(ArrayList<String> mistakes) {}
+    public void calculateFuturePersonalRecordsView() {}
+    public void showListOfInjuries(ArrayList<String> injuries) {}
+    public void replaceExercises() {}
 }
