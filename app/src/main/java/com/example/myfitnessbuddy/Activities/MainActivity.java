@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myfitnessbuddy.Coach;
 import com.example.myfitnessbuddy.ExercisePlan;
 import com.example.myfitnessbuddy.ManageDB;
 import com.example.myfitnessbuddy.R;
@@ -69,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
+            Coach ch = new Coach();
+
+            ch.testProposeHarder();
+            ch.testProposeEasier();
+
             // Initialise ManageDB class throughout the whole app
             ManageDB dbManager = ManageDB.manager();
         }

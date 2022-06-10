@@ -3,15 +3,10 @@ package com.example.myfitnessbuddy;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Coach implements Planner {
-
-    public Coach()
-    {
-        this.testProposeEasier();
-        this.testProposeHarder();
-    }
 
     private String strongman[] = {
             "yok",
@@ -58,8 +53,8 @@ public class Coach implements Planner {
     //  (for proposing easier or harder alternatives)
     //
     private String exercises_alternatives[] = {
-            "incline_push_ups:push_ups:decline_push_ups",
-            "dips_on_bench:dips:korean_dips"
+            "incline_push_ups push_ups decline_push_ups",
+            "dips_on_bench dips korean_dips"
     };
 
     public void generateWeeklyExercisePlan()
@@ -85,20 +80,27 @@ public class Coach implements Planner {
 
     public Exercise proposeHarder(Exercise exercise)
     {
-        String name = null;
+        String name = "";
         Exercise harder = new Exercise();
 
         for (int i = 0; i < exercises_alternatives.length; i++)
         {
-            Scanner scanExercise = new Scanner(exercises_alternatives[i]);
-
-            String regression = scanExercise.next();
-            String current = scanExercise.next();
-            String progression = scanExercise.next();
-
-            if (current == exercise.getName())
+            try
             {
-                name = progression;
+                Scanner scanExercise = new Scanner(exercises_alternatives[i]);
+
+                String regression = scanExercise.next();
+                String current = scanExercise.next();
+                String progression = scanExercise.next();
+
+                if (current.equals(exercise.getName()))
+                {
+                    name = progression;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.d("COACH", ex.getLocalizedMessage());
             }
         }
 
@@ -110,20 +112,27 @@ public class Coach implements Planner {
 
     public Exercise proposeEasier(Exercise exercise)
     {
-        String name = null;
+        String name = "";
         Exercise easier = new Exercise();
 
         for (int i = 0; i < exercises_alternatives.length; i++)
         {
-            Scanner scanExercise = new Scanner(exercises_alternatives[i]);
-
-            String regression = scanExercise.next();
-            String current = scanExercise.next();
-            String progression = scanExercise.next();
-
-            if (current == exercise.getName())
+            try
             {
-                name = regression;
+                Scanner scanExercise = new Scanner(exercises_alternatives[i]);
+
+                String regression = scanExercise.next();
+                String current = scanExercise.next();
+                String progression = scanExercise.next();
+
+                if (current.equals(exercise.getName()))
+                {
+                    name = regression;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.d("COACH", ex.getLocalizedMessage());
             }
         }
 
@@ -144,21 +153,21 @@ public class Coach implements Planner {
 
 
 
-    void testProposeEasier()
+    public void testProposeEasier()
     {
         Exercise current = new Exercise();
         current.setName("push_ups");
 
         Exercise easier = this.proposeEasier(current);
-        Log.d("[EASIER]", easier.getName());
+        Log.d("[COACH]", "Easier: " + easier.getName());
     }
 
-    void testProposeHarder()
+    public void testProposeHarder()
     {
         Exercise current = new Exercise();
         current.setName("push_ups");
 
         Exercise harder = this.proposeHarder(current);
-        Log.d("[harder]", harder.getName());
+        Log.d("[COACH]", "Harder: " + harder.getName());
     }
 }
