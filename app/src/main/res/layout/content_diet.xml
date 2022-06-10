@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -12,8 +13,107 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/diet_plan"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/afoodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#E91E63"
+        android:text="@string/a_food"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/newPlanButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/newPlanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="91dp"
+        android:backgroundTint="#3F51B5"
+        android:text="@string/new_plan"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBaseline_toBaselineOf="@+id/afoodButton"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPlanButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="628dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="1dp">
+
+            <TextView
+                android:id="@+id/mondayView"
+                android:layout_width="0dp"
+                android:layout_height="265dp"
+                android:layout_marginTop="79dp"
+                android:background="#EFC6C6"
+                app:layout_constraintEnd_toStartOf="@+id/tuesdayView"
+                app:layout_constraintStart_toEndOf="@+id/wednesdayView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tuesdayView"
+                android:layout_width="0dp"
+                android:layout_height="264dp"
+                android:background="#EFC6C6"
+                app:layout_constraintBaseline_toBaselineOf="@+id/mondayView"
+                app:layout_constraintEnd_toStartOf="@+id/thursdayView"
+                app:layout_constraintStart_toEndOf="@+id/mondayView" />
+
+            <TextView
+                android:id="@+id/wednesdayView"
+                android:layout_width="0dp"
+                android:layout_height="265dp"
+                android:layout_marginStart="16dp"
+                android:background="#EFC6C6"
+                app:layout_constraintBaseline_toBaselineOf="@+id/mondayView"
+                app:layout_constraintEnd_toStartOf="@+id/mondayView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/thursdayView"
+                android:layout_width="0dp"
+                android:layout_height="264dp"
+                android:background="#EFC6C6"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tuesdayView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tuesdayView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

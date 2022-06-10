@@ -36,4 +36,7 @@
     <string name="title_workout_log">Workout Log</string>
     <string name="title_coaching_diet">Coaching</string>
     <string name="stats">STATS</string>
+    <string name="diet_plan">Diet Plan</string>
+    <string name="a_food">a-food</string>
+    <string name="new_plan">New Plan</string>
 </resources>
