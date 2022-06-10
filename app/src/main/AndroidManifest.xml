@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.DietActivity"></activity>
-        <activity android:name=".Activities.MessageActivity" />
-        <activity android:name=".Activities.AFoodActivity" />
         <activity
             android:name=".Activities.CoachingActivity"
             android:label="@string/title_activity_coaching"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activities.DietActivity" />
+        <activity android:name=".Activities.MessageActivity" />
+        <activity android:name=".Activities.AFoodActivity" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"

@@ -35,4 +35,5 @@
     <string name="sign_in">Sign In</string>
     <string name="title_workout_log">Workout Log</string>
     <string name="title_coaching_diet">Coaching</string>
+    <string name="stats">STATS</string>
 </resources>
