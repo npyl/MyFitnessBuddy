@@ -41,6 +41,7 @@
         android:backgroundTint="#3F51B5"
         android:text="@string/stats"
         android:textColor="@android:color/white"
+        android:onClick="showStatsPopup"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -12,7 +12,7 @@
         <activity
             android:name=".Activities.CoachingActivity"
             android:label="@string/title_activity_coaching"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.DietActivity" />
         <activity android:name=".Activities.MessageActivity" />
         <activity android:name=".Activities.AFoodActivity" />

@@ -42,4 +42,7 @@
     <string name="new_entry">New Entry</string>
     <string name="tick">✔</string>
     <string name="x">X</string>
+    <string name="kgs">KGS</string>
+    <string name="sets">SETS</string>
+    <string name="reps">REPS</string>
 </resources>

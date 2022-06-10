@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 this.showNewWorkoutEntryPopup();
             }
 
+            //
+            //  (For the New WorkoutLog Entry popup)
+            //
             private void showNewWorkoutEntryPopup() {
                 // inflate the layout of the popup window
                 LayoutInflater inflater = (LayoutInflater)
@@ -67,15 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(findViewById(android.R.id.content).getRootView(), Gravity.CENTER, 0, 0);
-
-                // dismiss the popup window when touched
-//                popupView.setOnTouchListener(new View.OnTouchListener() {
-//                    @Override
-//                    public boolean onTouch(View v, MotionEvent event) {
-//                        popupWindow.dismiss();
-//                        return true;
-//                    }
-//                });
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -138,6 +132,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
 
+    public void showStatsPopup(View view)
+    {
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.workout_log_stats_popup, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(findViewById(android.R.id.content).getRootView(), Gravity.CENTER, 0, 0);
+    }
+
     public void logout(MenuItem item) {
         // remove this user from DB => logout
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -163,4 +175,15 @@ public class MainActivity extends AppCompatActivity {
     public void calculateFuturePersonalRecordsView() {}
     public void showListOfInjuries(ArrayList<String> injuries) {}
     public void replaceExercises() {}
+
+    //
+    //  (These are for popups)
+    //
+
+    public void saveNewWorkoutLogEntry(View view) {
+        Log.d("MAIN", "save workout entry");
+    }
+
+    public void closeNewWorkoutLogEntry(View view) {
+    }
 }
