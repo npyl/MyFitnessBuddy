@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -182,6 +183,38 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveNewWorkoutLogEntry(View view) {
         Log.d("MAIN", "save workout entry");
+
+        // TODO: the following code does not work!
+
+//        TextView exerciseTextBox = this.findViewById(R.id.exerciseTextBox);
+//        TextView setsTextBox = this.findViewById(R.id.setsTextBox);
+//        TextView repsTextBox = this.findViewById(R.id.repsTextBox);
+//        TextView kgsTextBox = this.findViewById(R.id.kgsTextBox);
+//
+//        if (exerciseTextBox == null || setsTextBox == null || repsTextBox == null || kgsTextBox == null)
+//            return;
+//
+//        Log.d("MAIN", "AT LEAST HERE!");
+//
+//        String exercise = exerciseTextBox.getText().toString();
+//        String sets = setsTextBox.getText().toString();
+//        String reps = repsTextBox.getText().toString();
+//        String kgs = kgsTextBox.getText().toString();
+//
+//        if (
+//                exercise.isEmpty()  ||
+//                        sets.isEmpty()      ||
+//                        reps.isEmpty()      ||
+//                        kgs.isEmpty()
+//        )
+//        {
+//            return;
+//        }
+//
+//        Log.d("MAIN", "Got: " + exercise + " + " + sets);
+
+        // So we just mimic the logic of creating a new entry
+
     }
 
     public void closeNewWorkoutLogEntry(View view) {

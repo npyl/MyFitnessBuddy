@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="3dp"
         android:onClick="closeNewWorkoutLogEntry"
         android:text="@string/x"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
@@ -55,33 +55,31 @@
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/doneButton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/closeViewButton"
         app:layout_constraintTop_toBottomOf="@+id/closeViewButton" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="8dp"
         android:text="@string/sets"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/textView6" />
+        app:layout_constraintStart_toStartOf="@+id/setsTextBox" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginBottom="17dp"
         android:text="@string/reps"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView7" />
+        app:layout_constraintBottom_toTopOf="@+id/repsTextBox"
+        app:layout_constraintStart_toStartOf="@+id/repsTextBox" />
 
     <TextView
         android:id="@+id/textView7"
@@ -89,6 +87,52 @@
         android:layout_height="wrap_content"
         android:text="@string/kgs"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/calendarView" />
+        app:layout_constraintStart_toStartOf="@+id/kgsTextBox" />
+
+    <EditText
+        android:id="@+id/exerciseTextBox"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="27dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/setsTextBox"
+        app:layout_constraintEnd_toStartOf="@+id/setsTextBox"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/setsTextBox"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="11dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/repsTextBox"
+        app:layout_constraintEnd_toStartOf="@+id/repsTextBox"
+        app:layout_constraintStart_toEndOf="@+id/exerciseTextBox" />
+
+    <EditText
+        android:id="@+id/repsTextBox"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="6dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/kgsTextBox"
+        app:layout_constraintEnd_toStartOf="@+id/kgsTextBox"
+        app:layout_constraintStart_toEndOf="@+id/setsTextBox" />
+
+    <EditText
+        android:id="@+id/kgsTextBox"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="244dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/repsTextBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
