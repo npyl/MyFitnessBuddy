@@ -94,15 +94,15 @@ public class ManageDB {
             // ------------------------------------------------------------------
             // Workout Log
             // ------------------------------------------------------------------
-            JSONArray wl = o.getJSONArray("workout_log");
+            JSONObject wl = o.getJSONObject("workout_log");
 
             if (wl.length() == 0)
             {
                 Log.d("ManageDB", "error getting workout log data");
                 return;
             }
-            else
-                Log.d("ManageDB", "WorkoutLog keys: " + wl.length());
+
+            Log.d("ManageDB", "WorkoutLog keys: " + wl.length());
 
             //
             //  For every workout log entry:
@@ -112,18 +112,15 @@ public class ManageDB {
             //      4. create Workout Log Entry
             //      5. add to workout log
             //
-            for (int i = 0; i < wl.length(); i++)
+            Iterator<String> entry_dates = wl.keys();
+            for (Iterator<String> it = entry_dates; it.hasNext(); )
             {
-                Log.d("ManageDB", "For WorkoutLogEntry: " + i);
+                String entry_date = it.next();
+
+                Log.d("ManageDB", "For WorkoutLogEntry: " + entry_date);
 
                 // get current workout log entry    (Step 1.)
-                JSONObject current_workout_log_entry = wl.getJSONObject(i);
-
-                if (current_workout_log_entry == null)
-                {
-                    Log.d("ManageDB", "error getting workout log entry with index: " + i);
-                    return;
-                }
+                JSONObject current_workout_log_entry = wl.getJSONObject(entry_date);
 
                 //
                 //  Get Notes   (Step 2.)
@@ -143,9 +140,9 @@ public class ManageDB {
                 Iterator<String> exerciseNames = current_workout_log_entry.keys();
 
                 // foreach exercise we find; make sure its not user notes and extract info
-                for (Iterator<String> it = exerciseNames; it.hasNext(); )
+                for (Iterator<String> it2 = exerciseNames; it2.hasNext(); )
                 {
-                    String key = it.next();
+                    String key = it2.next();
 
                     // ignore "notes"
                     if (key.equals("notes"))
@@ -193,7 +190,7 @@ public class ManageDB {
             // ---------------------------------------------------------------------------
             // Restaurant Menus
             // ---------------------------------------------------------------------------
-            pj = new ParseJSON("RestaurantMenus.json", null);
+            pj = new ParseJSON("RestaurantMenus.json", ctx);
 
             // getting json for each restaurant
             JSONArray jsonsForRestaurants = pj.getJSONArray("restaurants");

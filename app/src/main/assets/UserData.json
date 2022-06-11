@@ -3,9 +3,9 @@
     {
       "name"      :   "Nikos",
       "surname"   :   "Pylarinos",
-      "age"       :   "22",
-      "weight"    :   "60",
-      "height"    :   "170",
+      "age"       :   22,
+      "weight"    :   60,
+      "height"    :   170,
       "male"      :   true,
       "plan"      :   "bulk",
       "dislikes"  : [
@@ -19,7 +19,7 @@
       "has_completed_first_run": true,
       "workout_log"   :
       {
-          "01/01/22"  :
+          "01:01:22"  :
           {
               "push_ups" :
               {
@@ -28,7 +28,7 @@
               },
               "notes" : "A good session today"
           },
-          "02/01/22"  :
+          "02:01:22"  :
           {
               "pull_ups" :
               {
@@ -42,9 +42,9 @@
     {
       "name"      :   "Tasos",
       "surname"   :   "Papagewrgopoulos",
-      "age"       :   "22",
-      "weight"    :   "70",
-      "height"    :   "180",
+      "age"       :   22,
+      "weight"    :   70,
+      "height"    :   180,
       "male"      :   true,
       "plan"      :   "maintain",
       "dislikes"  : [
@@ -63,9 +63,9 @@
     {
       "name"      :   "Vaggelis",
       "surname"   :   "Rozos",
-      "age"       :   "22",
-      "weight"    :   "70",
-      "height"    :   "180",
+      "age"       :   22,
+      "weight"    :   70,
+      "height"    :   180,
       "male"      :   true,
       "plan"      :   "cut",
       "dislikes"  : [

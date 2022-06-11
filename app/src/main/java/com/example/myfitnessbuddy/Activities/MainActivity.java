@@ -102,26 +102,33 @@ public class MainActivity extends AppCompatActivity {
             ch.testProposeHarder();
             ch.testProposeEasier();
 
-            // Initialise ManageDB class throughout the whole app
-            ManageDB dbManager = ManageDB.manager();
-
-            //
-            //  Show Workout Log
-            //
-            ArrayList<WorkoutLogEntry> workoutLog = dbManager.getWorkoutLog();
-
-            //
-            // get the workout log text view (it belongs to different view so we need to do some work to get it)
-            //
-            TextView workoutLogTextView = this.findViewById(R.id.workoutLogTextView);
-            workoutLogTextView.getText();
-
-            for (int i = 0; i < workoutLog.size(); i++)
+            try
             {
-                // get current entry
-                WorkoutLogEntry currentEntry = workoutLog.get(i);
+                // Initialise ManageDB class throughout the whole app
+                ManageDB dbManager = ManageDB.manager(getApplicationContext());
 
-                // print the notes
+                //
+                //  Show Workout Log
+                //
+                ArrayList<WorkoutLogEntry> workoutLog = dbManager.getWorkoutLog();
+
+                //
+                // get the workout log text view (it belongs to different view so we need to do some work to get it)
+                //
+                TextView workoutLogTextView = this.findViewById(R.id.workoutLogTextView);
+                workoutLogTextView.getText();
+
+                for (int i = 0; i < workoutLog.size(); i++)
+                {
+                    // get current entry
+                    WorkoutLogEntry currentEntry = workoutLog.get(i);
+
+                    // print the notes
+
+                }
+            }
+            catch (Exception ex)
+            {
 
             }
         }
