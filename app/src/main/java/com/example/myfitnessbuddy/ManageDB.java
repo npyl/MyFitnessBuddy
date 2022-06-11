@@ -177,6 +177,7 @@ public class ManageDB {
                 {
                     newEntry.setExerciseList(exercisesList);
                     newEntry.setNotes(notes);
+                    newEntry.setDate(entry_date);
                 }
 
                 //

@@ -24,6 +24,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myfitnessbuddy.Coach;
+import com.example.myfitnessbuddy.Exercise;
 import com.example.myfitnessbuddy.ExercisePlan;
 import com.example.myfitnessbuddy.ManageDB;
 import com.example.myfitnessbuddy.R;
@@ -123,8 +124,30 @@ public class MainActivity extends AppCompatActivity {
                     // get current entry
                     WorkoutLogEntry currentEntry = workoutLog.get(i);
 
-                    // print the notes
+                    // get exercises list
+                    ArrayList<Exercise> exercisesList = currentEntry.getExerciseList();
 
+                    //
+                    // print the entry
+                    //
+                    String text = (String) workoutLogTextView.getText();
+                    text += currentEntry.getDate() + ":\n";
+
+                    for (int j = 0; j < exercisesList.size(); j++)
+                    {
+                        Exercise currentExercise = exercisesList.get(j);
+
+                        text += currentExercise.getName() + ":\n" +
+                                "SETS: " + currentExercise.getSets() + "\n" +
+                                "REPS: " + currentExercise.getReps() + "\n";
+                    }
+
+                    if (!currentEntry.getNotes().isEmpty())
+                    {
+                        text += "\nNotes: " + currentEntry.getNotes() + "\n\n";
+                    }
+
+                    workoutLogTextView.setText(text);
                 }
             }
             catch (Exception ex)

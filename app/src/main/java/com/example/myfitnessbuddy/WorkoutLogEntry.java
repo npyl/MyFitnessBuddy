@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class WorkoutLogEntry {
     String              notes;
+    String              date;
     ArrayList<Exercise> exerciseList;
 
     public String getNotes() {
@@ -12,6 +13,14 @@ public class WorkoutLogEntry {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public ArrayList<Exercise> getExerciseList() {
