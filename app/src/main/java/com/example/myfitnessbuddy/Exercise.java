@@ -1,8 +1,9 @@
 package com.example.myfitnessbuddy;
 
 public class Exercise {
-    String name;
-    int    reps;
+    String  name;
+    int     sets;
+    int     reps;
 
     public String getName() {
         return name;
@@ -11,6 +12,12 @@ public class Exercise {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public int getSets() { return sets; }
 
     public int getReps() {
         return reps;

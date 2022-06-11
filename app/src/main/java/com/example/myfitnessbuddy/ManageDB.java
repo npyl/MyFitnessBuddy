@@ -1,10 +1,13 @@
 package com.example.myfitnessbuddy;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ManageDB {
     UserInfo                    userInfo;
@@ -36,10 +39,14 @@ public class ManageDB {
         //
         try
         {
-            //
+            // ===================================================
             // Get List of users & Extract info for current user
             // (everything is contained in the UserData.json file)
-            //
+            // ===================================================
+
+            // -------------------------------------------------------------------
+            // Basic User Data
+            // -------------------------------------------------------------------
 
             ParseJSON pj = new ParseJSON("UserData.json", null);
 
@@ -68,9 +75,107 @@ public class ManageDB {
                     o.getBoolean("male")
             );
 
+            // -------------------------------------------------------------------
+
+            // ------------------------------------------------------------------
+            // Workout Log
+            // ------------------------------------------------------------------
+            JSONArray wl = o.getJSONArray("workout_log");
+
+            if (wl.length() == 0)
+            {
+                Log.d("ManageDB", "error getting workout log data");
+                return;
+            }
+
+            // create a workout log entry snapshot; initially empty
+            workoutLog = new ArrayList<WorkoutLogEntry>();
+
             //
+            //  For every workout log entry:
+            //      1. get workout log entry (as JSON object)
+            //      2. extract notes
+            //      3. extract exercises list and for each exercise create Exercise() object
+            //      4. create Workout Log Entry
+            //      5. add to workout log
+            //
+            for (int i = 0; i < wl.length(); i++)
+            {
+                // get current workout log entry    (Step 1.)
+                JSONObject current_workout_log_entry = wl.getJSONObject(i);
+
+                if (current_workout_log_entry == null)
+                {
+                    Log.d("ManageDB", "error getting workout log entry with index: " + i);
+                    return;
+                }
+
+                //
+                //  Get Notes   (Step 2.)
+                //
+                String notes = current_workout_log_entry.getString("notes");
+
+                //
+                //  Get Exercises with their sets & reps    (Step 3.)
+                //
+
+                // create exercises list
+                ArrayList<Exercise> exercisesList = new ArrayList<Exercise>();
+
+                // get all keys; a.k.a. exercise names & notes
+                Iterator<String> exerciseNames = current_workout_log_entry.keys();
+
+                // foreach exercise we find; make sure its not user notes and extract info
+                for (Iterator<String> it = exerciseNames; it.hasNext(); )
+                {
+                    String key = it.next();
+
+                    // ignore "notes"
+                    if (key == "notes")
+                        continue;
+
+                    JSONObject exerciseJSON = current_workout_log_entry.getJSONObject(key);
+
+                    // exercise data
+                    String exerciseName = key;
+                    int sets = exerciseJSON.getInt("sets");
+                    int reps = exerciseJSON.getInt("reps");
+
+                    // create exercise object
+                    Exercise currentExercise = new Exercise();
+                    currentExercise.setName(exerciseName);
+                    currentExercise.setSets(sets);
+                    currentExercise.setReps(reps);
+
+                    // add to our list
+                    exercisesList.add(currentExercise);
+                }
+
+                //
+                //  Setup new workout log entry (Step 4.)
+                //
+
+                // create new entry
+                WorkoutLogEntry newEntry = new WorkoutLogEntry();
+
+                // if our list is not empty, add to workout log entry (also add the notes)
+                if (!exercisesList.isEmpty())
+                {
+                    newEntry.setExerciseList(exercisesList);
+                    newEntry.setNotes(notes);
+                }
+
+                //
+                //  Add New Workout Log Entry to Workout Log
+                //
+                workoutLog.add(newEntry);
+            }
+
+            // ---------------------------------------------------------------------------
+
+            // ---------------------------------------------------------------------------
             // Restaurant Menus
-            //
+            // ---------------------------------------------------------------------------
             pj = new ParseJSON("RestaurantMenus.json", null);
 
             // getting json for each restaurant
@@ -87,6 +192,10 @@ public class ManageDB {
                 // add to our list; this is a bit ugly but ok for now...
                 restaurantsMenus.add(o);
             }
+
+            // -------------------------------------------------------------------------
+
+            // =========================================================================
         }
         catch (Exception ex)
         {
