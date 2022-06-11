@@ -28,6 +28,7 @@ import com.example.myfitnessbuddy.Exercise;
 import com.example.myfitnessbuddy.ExercisePlan;
 import com.example.myfitnessbuddy.ManageDB;
 import com.example.myfitnessbuddy.R;
+import com.example.myfitnessbuddy.Statistics;
 import com.example.myfitnessbuddy.StatisticsInfo;
 import com.example.myfitnessbuddy.WorkoutLogEntry;
 import com.example.myfitnessbuddy.ui.login.LoginActivity;
@@ -40,6 +41,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    WorkoutLogEntry newEntry;           // created when using the New Entry Popup
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
             }
             catch (Exception ex)
             {
-
+                Log.d("MainActivity", ex.getLocalizedMessage());
+                Log.d("MainActivity", Log.getStackTraceString(ex));
             }
         }
     }
@@ -215,7 +219,6 @@ public class MainActivity extends AppCompatActivity {
     //  Workout Log Functionality
     //
     public void predictTodaysWorkout(ExercisePlan ep) {}
-    public void createWorkoutLogEntry(ArrayList<String> contents) {}
     public void showSummary() {}
     public void showStatisticsInfo(StatisticsInfo si) {}
     public void askForNewGoal() {}
@@ -237,10 +240,10 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: the following code does not work!
 
-//        TextView exerciseTextBox = this.findViewById(R.id.exerciseTextBox);
-//        TextView setsTextBox = this.findViewById(R.id.setsTextBox);
-//        TextView repsTextBox = this.findViewById(R.id.repsTextBox);
-//        TextView kgsTextBox = this.findViewById(R.id.kgsTextBox);
+//        TextView exerciseTextBox = findViewById(R.id.exerciseTextBox);
+//        TextView setsTextBox = findViewById(R.id.setsTextBox);
+//        TextView repsTextBox = findViewById(R.id.repsTextBox);
+//        TextView kgsTextBox = findViewById(R.id.kgsTextBox);
 //
 //        if (exerciseTextBox == null || setsTextBox == null || repsTextBox == null || kgsTextBox == null)
 //            return;
@@ -264,8 +267,47 @@ public class MainActivity extends AppCompatActivity {
 //
 //        Log.d("MAIN", "Got: " + exercise + " + " + sets);
 
-        // So we just mimic the logic of creating a new entry
+        try
+        {
+            // So we just mimic the logic of creating a new entry
+            String exercise = "pull_downs";
+            String sets = "10";
+            String reps = "10";
+            String kgs = "60";
 
+            String notes = "test test test!";
+
+            // create format
+            String exercise1 = exercise + " " + sets + " " + kgs;
+            ArrayList<String> contents = new ArrayList<>();
+            contents.add(exercise1);
+            contents.add(notes);
+
+            // create workout log entry
+            newEntry = WorkoutLogEntry.createWorkoutLogEntry(contents);
+
+            // add workout log entry
+            ManageDB.manager().addWorkoutLogEntry(newEntry);
+
+            Log.d("MainActivity", "Got: " + newEntry.getNotes());
+
+            // TODO: implement
+            showSummary();
+
+            Statistics statistics = Statistics.createStatisticsInstance();
+            StatisticsInfo si = statistics.getStatistics();
+
+            // show statistics info
+            // TODO: implement
+            showStatisticsInfo(si);
+
+            // TODO: implement the use case further with goals etc.
+        }
+        catch (Exception ex)
+        {
+            Log.d("MainActivity", ex.getLocalizedMessage());
+            Log.d("MainActivity", Log.getStackTraceString(ex));
+        }
     }
 
     public void closeNewWorkoutLogEntry(View view) {

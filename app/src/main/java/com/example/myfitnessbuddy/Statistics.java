@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Statistics {
     StatisticsInfo statistics;
 
-    public Statistics createStatisticsInstance()
+    public static Statistics createStatisticsInstance()
     {
         return new Statistics();
     }

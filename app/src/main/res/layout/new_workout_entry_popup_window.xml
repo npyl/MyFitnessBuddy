@@ -68,44 +68,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
         android:text="@string/sets"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-        app:layout_constraintStart_toStartOf="@+id/setsTextBox" />
+        app:layout_constraintStart_toStartOf="@+id/setsTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="14dp"
         android:text="@string/reps"
-        app:layout_constraintBottom_toTopOf="@+id/repsTextBox"
-        app:layout_constraintStart_toStartOf="@+id/repsTextBox" />
+        app:layout_constraintStart_toStartOf="@+id/repsTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="311dp"
         android:text="@string/kgs"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/kgsTextBox" />
 
     <EditText
         android:id="@+id/exerciseTextBox"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="27dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/setsTextBox"
+        app:layout_constraintBottom_toBottomOf="@+id/repsTextBox"
         app:layout_constraintEnd_toStartOf="@+id/setsTextBox"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setsTextBox" />
 
     <EditText
         android:id="@+id/setsTextBox"
         android:layout_width="0dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/repsTextBox"
@@ -116,23 +119,53 @@
         android:id="@+id/repsTextBox"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="44dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/kgsTextBox"
+        app:layout_constraintBottom_toTopOf="@+id/notesTextBox"
         app:layout_constraintEnd_toStartOf="@+id/kgsTextBox"
-        app:layout_constraintStart_toEndOf="@+id/setsTextBox" />
+        app:layout_constraintStart_toEndOf="@+id/setsTextBox"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/kgsTextBox"
         android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/repsTextBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/repsTextBox" />
+
+    <EditText
+        android:id="@+id/notesTextBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="17dp"
+        android:background="#ECBBBB"
+        android:ems="10"
+        android:foregroundTint="#FFFFFF"
+        android:inputType="textPersonName"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="211dp"
+        android:text="Notes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
