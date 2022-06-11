@@ -42,11 +42,11 @@
         android:text="@string/stats"
         android:textColor="@android:color/white"
         android:onClick="showStatsPopup"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/workoutLogTextView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/workoutLogTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
