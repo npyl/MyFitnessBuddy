@@ -34,6 +34,8 @@ public class ManageDB {
 
     public ManageDB()
     {
+        workoutLog = new ArrayList<WorkoutLogEntry>();
+
         //
         // Read User Data
         //
