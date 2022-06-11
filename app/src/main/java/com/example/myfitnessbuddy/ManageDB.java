@@ -1,5 +1,8 @@
 package com.example.myfitnessbuddy;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -32,8 +35,9 @@ public class ManageDB {
 
     private static ManageDB single_instance = null;
 
-    public ManageDB()
+    public ManageDB(Context ctx)
     {
+        // create a workout log entry snapshot; initially empty
         workoutLog = new ArrayList<WorkoutLogEntry>();
 
         //
@@ -50,7 +54,11 @@ public class ManageDB {
             // Basic User Data
             // -------------------------------------------------------------------
 
-            ParseJSON pj = new ParseJSON("UserData.json", null);
+            // get current user email
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+            String currentUserEmail = prefs.getString("signedUser", "");
+
+            ParseJSON pj = new ParseJSON("UserData.json", ctx);
 
             // getting json for each user
             JSONArray jsonsForUsers = pj.getJSONArray("users");
@@ -62,11 +70,15 @@ public class ManageDB {
                 o = jsonsForUsers.getJSONObject(i);
                 String email = o.getString("email");
 
-                if (User.currentUser().getEmail() == email)
+                Log.d("ManageDB", "Comparing: " + email + " with: " + currentUserEmail);
+
+                if (currentUserEmail.equals(email))
                 {
                     break;      // found it!
                 }
             }
+
+            Log.d("ManageDB", "Got user: "  + o.getString("name"));
 
             User.currentUser().setInfo(
                     o.getString("name"),
@@ -89,9 +101,8 @@ public class ManageDB {
                 Log.d("ManageDB", "error getting workout log data");
                 return;
             }
-
-            // create a workout log entry snapshot; initially empty
-            workoutLog = new ArrayList<WorkoutLogEntry>();
+            else
+                Log.d("ManageDB", "WorkoutLog keys: " + wl.length());
 
             //
             //  For every workout log entry:
@@ -103,6 +114,8 @@ public class ManageDB {
             //
             for (int i = 0; i < wl.length(); i++)
             {
+                Log.d("ManageDB", "For WorkoutLogEntry: " + i);
+
                 // get current workout log entry    (Step 1.)
                 JSONObject current_workout_log_entry = wl.getJSONObject(i);
 
@@ -116,6 +129,8 @@ public class ManageDB {
                 //  Get Notes   (Step 2.)
                 //
                 String notes = current_workout_log_entry.getString("notes");
+
+                Log.d("ManageDB", "Got notes: " + notes);
 
                 //
                 //  Get Exercises with their sets & reps    (Step 3.)
@@ -133,7 +148,7 @@ public class ManageDB {
                     String key = it.next();
 
                     // ignore "notes"
-                    if (key == "notes")
+                    if (key.equals("notes"))
                         continue;
 
                     JSONObject exerciseJSON = current_workout_log_entry.getJSONObject(key);
@@ -201,14 +216,25 @@ public class ManageDB {
         }
         catch (Exception ex)
         {
-
+            Log.d("ManageDB", ex.getLocalizedMessage());
+            Log.d("ManageDB", Log.getStackTraceString(ex));
         }
     }
 
-    public static ManageDB manager()
+    // this is to create the first static instance...
+    public static ManageDB manager(Context ctx) throws Exception
     {
+        if (single_instance != null)
+            throw new Exception("ManageDB_initialisation_misuse: you should not call this method with an already initialised ManageDB instance!");
+
+        single_instance = new ManageDB(ctx);
+        return single_instance;
+    }
+
+    // this is to return an already initialised static instance...
+    public static ManageDB manager() throws Exception {
         if (single_instance == null)
-            single_instance = new ManageDB();
+            throw new Exception("ManageDB_initialisation_misuse: you cannot call this method without having initialised ManageDB");
         return single_instance;
     }
 

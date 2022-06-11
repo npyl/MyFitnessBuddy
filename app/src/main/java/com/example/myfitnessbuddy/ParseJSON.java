@@ -17,34 +17,19 @@ public class ParseJSON {
     private String      contents;
     private JSONObject  jsonObject;
 
-    private String readJSON(String url, Context ctx) {
+    private String readJSON(String url, Context ctx) throws IOException {
         // code taken from: https://stackoverflow.com/questions/9544737/read-file-from-assets
 
-        String contents = null;
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(ctx.getAssets().open(url), "UTF-8"));
-
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                contents += mLine;
-            }
-        } catch (IOException e) {
-            Log.d("ParseJSON", "got exception" + e);
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    Log.d("ParseJSON", "got exception" + e);
-                }
-            }
-        }
-        return contents;
+        InputStream is = ctx.getAssets().open(url);
+        int size = is.available();
+        byte[] buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        String myJson = new String(buffer, "UTF-8");
+        return myJson;
     }
 
-    public ParseJSON(String url, Context ctx) throws JSONException {
+    public ParseJSON(String url, Context ctx) throws JSONException, IOException {
         this.contents = readJSON(url, ctx);
         this.jsonObject = new JSONObject(this.contents);
     }
